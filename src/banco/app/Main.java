@@ -1,9 +1,10 @@
 package banco.app;
 
 import banco.excecao.BancoException;
+import banco.excecao.PersistenciaException;
 import banco.excecao.ValorInvalidoException;
 import banco.modelo.Conta;
-import banco.repositorio.ContaRepositorioMemoria;
+import banco.repositorio.ContaRepositorioMySQL;
 import banco.servico.BancoService;
 
 import java.math.BigDecimal;
@@ -16,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         // Único lugar que escolhe a implementação de armazenamento.
         // Com banco de dados, basta trocar esta linha.
-        BancoService banco = new BancoService(new ContaRepositorioMemoria());
+        BancoService banco = new BancoService(new ContaRepositorioMySQL());
 
         String opcao;
         do {
@@ -26,6 +27,8 @@ public class Main {
                 executar(opcao, banco);
             } catch (BancoException e) {
                 System.out.println("[ERRO] " + e.getMessage());
+            } catch (PersistenciaException e) {
+                System.out.println("[ERRO DE BANCO DE DADOS] :" + e.getMessage());
             }
         } while (!opcao.equals("0"));
         System.out.println("Encerrando.");

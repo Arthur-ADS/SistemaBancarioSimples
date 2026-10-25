@@ -11,6 +11,9 @@ public class ContaPoupanca extends Conta implements Rentavel {
         super(numero, titular);
     }
 
+    public ContaPoupanca(String numero, String titular, BigDecimal saldo) {
+        super(numero, titular, saldo);    }
+
     @Override
     public void aplicarRendimento() {
         BigDecimal rendimento = getSaldo().multiply(TAXA).setScale(2, RoundingMode.HALF_EVEN);

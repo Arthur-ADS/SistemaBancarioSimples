@@ -10,6 +10,9 @@ public class ContaCorrente extends Conta {
         super(numero, titular);
     }
 
+    public ContaCorrente(String numero, String titular, BigDecimal saldo) {
+        super(numero, titular, saldo);    }
+
     @Override
     public BigDecimal getSaldoDisponivel() {      // sobrescrito
         return getSaldo().add(LIMITE);

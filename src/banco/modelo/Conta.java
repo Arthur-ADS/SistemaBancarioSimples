@@ -20,6 +20,12 @@ public abstract class Conta {
         this.titular = titular;
     }
 
+    protected Conta(String numero, String titular, BigDecimal saldo) {
+        this.numero = numero;
+        this.titular = titular;
+        this.saldo = saldo;
+    }
+
     // Cada tipo de conta define o seu (POLIMORFISMO)
     public abstract String getTipo();
     public abstract BigDecimal calcularTarifaMensal();

@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS bd_poo;
+
+USE bd_poo;
+
+CREATE TABLE IF NOT EXISTS conta (
+	numero  CHAR(4)        PRIMARY KEY,
+    titular VARCHAR(100)   NOT NULL,
+    tipo    ENUM('CORRENTE','POUPANCA') NOT NULL,
+    saldo   DECIMAL(15,2)  NOT NULL DEFAULT 0
+);
