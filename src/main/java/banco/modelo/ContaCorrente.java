@@ -1,17 +1,21 @@
 package banco.modelo;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
 import java.math.BigDecimal;
 
 /** HERANÇA: estende Conta. Possui cheque especial e tarifa mensal. */
+@Entity
+@DiscriminatorValue("CORRENTE") // valor gravado na coluna "tipo"
 public class ContaCorrente extends Conta {
     private static final BigDecimal LIMITE = new BigDecimal("500.00");
 
-    public ContaCorrente(String numero, String titular) {
+    protected ContaCorrente() {} // exigido pelo Hibernate
+
+    public ContaCorrente(String numero, Cliente titular) {
         super(numero, titular);
     }
-
-    public ContaCorrente(String numero, String titular, BigDecimal saldo) {
-        super(numero, titular, saldo);    }
 
     @Override
     public BigDecimal getSaldoDisponivel() {      // sobrescrito
